@@ -1,12 +1,26 @@
 <?php
+class connect
+{
+    public function connect_db($srv_n, $usr_n, $pass, $db_n)
+{
+  $conn = mysqli_connect($srv_n, $usr_n, $pass, $db_n);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    return "Connected successfully \n";
 
+}
+}
+class insert
+{
+    public function if_isset($btn, $do)
+    {
+        if(isset($_POST['$btn'])) {
+            $do;
+            }
 
-$servername = "localhost";
-$username = "root";
-$password = "Ac1213aB";
-$dbname = "cr09_david_carrental";
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+    }
+}
 
 if(isset($_POST['submit'])) {
     $first_name2 = mysqli_real_escape_string($conn, $_POST["firstname"]);
