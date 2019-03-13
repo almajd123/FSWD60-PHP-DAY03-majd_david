@@ -1,4 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- bootstrap -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork_PHP_DAY03</title>
+    <!-- metatags -->
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <meta name="author" content="KarlBockerer">
+</head>
+<body>
 <?php
+
 class MySQL
 {
     public function connected($host, $username, $password, $db_name)
@@ -35,12 +50,17 @@ class MySQL
     }
     public function foreach($fetch, $colum)
     {
-        echo "<table style=\"width:100%\">";
+        echo "<form method='post' action='connect.php'>";
+        echo "<table class=\"table\">";
         echo   "<tr>";
         $x = count($colum);
         for ($i = 0; $i < $x; $i++) {
-            echo "<th>'$colum[$i]'</th>";
+            echo "<th scope='col-span'>$colum[$i]</th>";
         }
+        echo "<th scope='col'>Edit</th>";
+        echo "<th scope='col'>Delete</th>";
+
+
         echo "</tr>";
         foreach ($fetch as $row) {
             $s = count($colum);
@@ -49,9 +69,17 @@ class MySQL
 
                 echo "<td>" . $row['' . $colum[$i] . ''] . "</td>";
             }
+            echo "<td><input value='Edit' type='submit' name='edit' class='btn btn-light'></td>";
+            echo "<td><input value='Delete' type='submit' name='delete' class='btn btn-light'></td>";
+
             echo "</tr>";
         }
         echo "</table>";
+        echo "</form>";
+        if (isset($_POST['edit'])) {
+            echo "hahaha";
+
+        }
     }
 
 }
@@ -68,11 +96,7 @@ $connect->foreach($fetch, $array);
 
 
 
-
-
-
-
-
-
 ?>
 
+</body>
+</html>
